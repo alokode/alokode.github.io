@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SumThing Challenge Invitation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #111e25;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: #00f0ff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h1 { margin-top: 24px; font-weight: bold; font-size: 24px; }
+        p { color: #8fa0a8; max-width: 300px; line-height: 1.5; font-size: 15px; }
+        .btn {
+            margin-top: 20px;
+            padding: 14px 28px;
+            background: #00f0ff;
+            color: #111e25;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner"></div>
+    <h1>Opening SumThing...</h1>
+    <p>Loading your puzzle challenge. If the app doesn't open automatically, tap below.</p>
+    <a id="open-btn" class="btn" href="#">Open in App</a>
+
+    <script>
+        // 1. Get query string (?data=3,6,9...&diff=Easy)
+        var queryString = window.location.search;
+        
+        // 2. Format custom URL scheme redirect: sumthing://puzzle?data=...
+        var appUrl = "sumthing://puzzle" + queryString;
+        
+        // Update backup button link
+        document.getElementById("open-btn").href = appUrl;
+        
+        // 3. Immediately trigger redirect
+        window.location.href = appUrl;
+        
+        // 4. (Optional) Redirect to App Store fallback after 3.5 seconds if they don't have the app
+        setTimeout(function() {
+            // window.location.href = "https://apps.apple.com/app/your-app-id";
+        }, 3500);
+    </script>
+</body>
+</html>
+
